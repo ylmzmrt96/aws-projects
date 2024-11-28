@@ -89,16 +89,16 @@ wget https://raw.githubusercontent.com/ylmzmrt96/aws-projects/refs/heads/main/00
 python3 roman-numerals-converter-app.py
 
 ```bash
-aws ec2 run-instances --image-id $LATEST_AMI --count 1 --instance-type t2.micro --key-name firstkey --security-groups necocli_roman_numbers_converter_sec_grp --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=okt_roman_numbers}]' --user-data file:///home/ec2-user/userdata.sh
+aws ec2 run-instances --image-id $LATEST_AMI --count 1 --instance-type t2.micro --key-name firstkey --security-groups necocli_roman_numbers_converter_sec_grp --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=neco_roman_numbers}]' --user-data file:///home/ec2-user/userdata.sh
 or
 
 aws ec2 run-instances \
     --image-id $LATEST_AMI \
     --count 1 \
     --instance-type t2.micro \
-    --key-name okt-aws \
-    --security-groups okde07_roman_numbers_converter_sec_grp \
-    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=okt_roman_numbers}]' \
+    --key-name firstkey \
+    --security-groups necocli_roman_numbers_converter_sec_grp \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=neco_roman_numbers}]' \
     --user-data file:///home/ec2-user/userdata.sh
 ````
 
@@ -106,15 +106,15 @@ aws ec2 run-instances \
 
 ```bash
 aws ec2 describe-instances --filters "Name=tag:Name,Values=
-okt_roman_numbers"
+neco_roman_numbers"
 ```
 
 - You can run the query to find Public IP and instance_id of instances:
 
 ```bash
-aws ec2 describe-instances --filters "Name=tag:Name,Values=okt_roman_numbers" --query 'Reservations[].Instances[].PublicIpAddress[]'
+aws ec2 describe-instances --filters "Name=tag:Name,Values=neco_roman_numbers" --query 'Reservations[].Instances[].PublicIpAddress[]'
 
-aws ec2 describe-instances --filters "Name=tag:Name,Values=okt_roman_numbers" --query 'Reservations[].Instances[].InstanceId[]'
+aws ec2 describe-instances --filters "Name=tag:Name,Values=neco_roman_numbers" --query 'Reservations[].Instances[].InstanceId[]'
 ```
 
 - To delete instances
@@ -126,7 +126,7 @@ aws ec2 terminate-instances --instance-ids <We have already learned this id with
 - To delete security groups
 
 ```bash
-aws ec2 delete-security-group --group-name okde09_roman_numbers_converter_sec_grp
+aws ec2 delete-security-group --group-name necocli_roman_numbers_converter_sec_grp
 ```
 
 # aws ec2 create-tags --resources i-5203422c --tags Key=Name,Value=MyInstance
